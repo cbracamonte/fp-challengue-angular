@@ -44,3 +44,10 @@ __screenshots__/
 Thumbs.db
 .vercel
 .env*
+
+# IA
+/.atl
+/.claude
+/.codex
+/.gemini
+/.remember

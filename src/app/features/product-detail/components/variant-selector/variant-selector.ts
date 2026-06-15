@@ -6,8 +6,8 @@ import type { ProductVariant } from '@api/types/product.types';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="flex flex-col gap-2">
-      <p class="text-sm font-semibold text-gray-700">Variantes</p>
-      <div class="flex flex-wrap gap-2" role="group" aria-label="Variantes del producto">
+      <p class="text-sm font-semibold text-gray-700">Presentación</p>
+      <div class="flex flex-wrap gap-2" role="group" aria-label="Presentaciones del producto">
         @for (variant of variants(); track variant.name) {
           <button
             class="rounded-full border px-4 py-1.5 text-sm font-medium transition-colors"

@@ -1,0 +1,42 @@
+@if (store.loading()) {
+  <app-loading-spinner />
+} @else if (store.error()) {
+  <app-error-state [message]="store.error()!" (retry)="reload()" />
+} @else if (store.product()) {
+  <div class="container mx-auto px-4 py-6 sm:px-6 lg:px-8">
+    <nav class="mb-6" aria-label="Ruta de navegación">
+      <ol class="flex flex-wrap items-center gap-1.5 text-sm text-gray-500" role="list">
+        <li>
+          <a routerLink="/" class="hover:text-[var(--color-primary)] transition-colors">Inicio</a>
+        </li>
+        <li aria-hidden="true"><span class="mx-0.5">/</span></li>
+        <li>
+          <span class="font-medium text-gray-900">{{ store.product()!.category.name }}</span>
+        </li>
+      </ol>
+    </nav>
+
+    <div class="rounded-xl bg-white p-6 shadow-[var(--shadow-card)]">
+      <div class="grid gap-8 md:grid-cols-2">
+        <app-image-gallery [images]="store.product()!.gallery" />
+        <app-product-info
+          [product]="store.product()!"
+          [selectedVariant]="store.selectedVariant()"
+          (variantChange)="store.setVariant($event)"
+          (addToCart)="store.addToCart()"
+        />
+      </div>
+    </div>
+
+    <div class="mt-6 rounded-xl bg-white shadow-[var(--shadow-card)]">
+      <app-product-tabs [product]="store.product()!" />
+    </div>
+
+    <div class="mt-6 rounded-xl bg-white p-6 shadow-[var(--shadow-card)]">
+      <app-related-products
+        [products]="store.relatedProducts()"
+        (addToCart)="store.addRelatedToCart($event)"
+      />
+    </div>
+  </div>
+}

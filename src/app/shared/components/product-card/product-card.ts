@@ -13,4 +13,9 @@ import { CurrencyFormatPipe } from '@shared/pipes/currency-format.pipe';
 export class ProductCardComponent {
   readonly product = input.required<Product>();
   readonly addToCart = output<Product>();
+
+  protected discount(): number {
+    const { current, original } = this.product().price;
+    return Math.round(((original - current) / original) * 100);
+  }
 }

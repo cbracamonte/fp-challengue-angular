@@ -15,13 +15,20 @@
             class="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
           />
+          @if (product().price.original > product().price.current) {
+            <div class="absolute left-2 top-2">
+              <span class="rounded-full bg-[var(--color-danger)] px-2 py-0.5 text-xs font-bold text-white">
+                -{{ discount() }}%
+              </span>
+            </div>
+          }
           @if (!product().available) {
             <div
               class="absolute inset-0 flex items-center justify-center bg-white/70"
-              aria-label="Out of stock"
+              aria-label="Agotado"
             >
               <span class="rounded-full bg-gray-200 px-3 py-1 text-sm font-medium text-gray-600">
-                Out of stock
+                Agotado
               </span>
             </div>
           }

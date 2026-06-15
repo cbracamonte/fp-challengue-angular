@@ -15,7 +15,6 @@ import { FOOTER_CONTENT } from '@core/tokens/';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './footer.html',
-  styleUrls: ['./footer.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Footer {

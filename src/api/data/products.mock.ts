@@ -13,14 +13,8 @@ export const PRODUCTS: Product[] = [
     },
     available: true,
     variants: [
-      {
-        name: 'Blíster',
-        quantity: 10,
-      },
-      {
-        name: 'Caja',
-        quantity: 100,
-      },
+      { name: 'Blíster', quantity: 10 },
+      { name: 'Caja', quantity: 100 },
     ],
     image: 'https://dcuk1cxrnzjkh.cloudfront.net/imagesproducto/030102L.jpg',
     gallery: [
@@ -28,7 +22,17 @@ export const PRODUCTS: Product[] = [
         id: '12345678-0001-4a10-8f01-000000000001',
         url: 'https://dcuk1cxrnzjkh.cloudfront.net/imagesproducto/030102L.jpg',
         alt: 'Paracetamol 500mg Tableta - Caja x 100',
-      }
+      },
+      {
+        id: '12345678-0010-4a10-8f01-000000001001',
+        url: 'https://placehold.co/600x600/283593/FFFFFF?text=Vista+Lateral',
+        alt: 'Azitromicina 500mg Tableta - Vista lateral',
+      },
+      {
+        id: '12345678-0010-4a10-8f01-000000001002',
+        url: 'https://placehold.co/600x600/1A237E/FFFFFF?text=Caja+x3',
+        alt: 'Azitromicina 500mg Tableta - Detalle caja x 3',
+      },
     ],
     price: {
       currency: 'PEN',
@@ -43,7 +47,7 @@ export const PRODUCTS: Product[] = [
     contraindications: 'Hipersensibilidad al paracetamol. Insuficiencia hepática grave.',
     warnings: 'No exceder la dosis recomendada. Evitar el consumo de alcohol.',
     relatedProductIds: [
-      'a1b2c3d4-0007-4a10-8f01-000000000007', 
+      'a1b2c3d4-0007-4a10-8f01-000000000007',
       'a1b2c3d4-0008-4a10-8f01-000000000008',
     ],
   },
@@ -59,10 +63,7 @@ export const PRODUCTS: Product[] = [
     },
     available: true,
     variants: [
-      {
-        name: 'Caja',
-        quantity: 100,
-      },
+      { name: 'Caja', quantity: 100 },
     ],
     image: 'https://dcuk1cxrnzjkh.cloudfront.net/imagesproducto/230447L.jpg',
     gallery: [
@@ -70,7 +71,17 @@ export const PRODUCTS: Product[] = [
         id: '12345678-0002-4a10-8f01-000000000002',
         url: 'https://dcuk1cxrnzjkh.cloudfront.net/imagesproducto/230447L.jpg',
         alt: 'Ibuprofeno 400mg Tableta Recubierta - Caja x 100',
-      }
+      },
+      {
+        id: '12345678-0010-4a10-8f01-000000001001',
+        url: 'https://placehold.co/600x600/283593/FFFFFF?text=Vista+Lateral',
+        alt: 'Azitromicina 500mg Tableta - Vista lateral',
+      },
+      {
+        id: '12345678-0010-4a10-8f01-000000001002',
+        url: 'https://placehold.co/600x600/1A237E/FFFFFF?text=Caja+x3',
+        alt: 'Azitromicina 500mg Tableta - Detalle caja x 3',
+      },
     ],
     price: {
       currency: 'PEN',
@@ -103,10 +114,7 @@ export const PRODUCTS: Product[] = [
     },
     available: true,
     variants: [
-      {
-        name: 'Caja',
-        quantity: 100,
-      },
+      { name: 'Caja', quantity: 100 },
     ],
     image: 'https://dcuk1cxrnzjkh.cloudfront.net/imagesproducto/014552L.jpg',
     gallery: [
@@ -114,7 +122,17 @@ export const PRODUCTS: Product[] = [
         id: '12345678-0003-4a10-8f01-000000000003',
         url: 'https://dcuk1cxrnzjkh.cloudfront.net/imagesproducto/014552L.jpg',
         alt: 'Amoxicilina 500mg Cápsula - Caja x 100',
-      }
+      },
+      {
+        id: '12345678-0010-4a10-8f01-000000001001',
+        url: 'https://placehold.co/600x600/283593/FFFFFF?text=Vista+Lateral',
+        alt: 'Azitromicina 500mg Tableta - Vista lateral',
+      },
+      {
+        id: '12345678-0010-4a10-8f01-000000001002',
+        url: 'https://placehold.co/600x600/1A237E/FFFFFF?text=Caja+x3',
+        alt: 'Azitromicina 500mg Tableta - Detalle caja x 3',
+      },
     ],
     price: {
       currency: 'PEN',
@@ -143,10 +161,7 @@ export const PRODUCTS: Product[] = [
     },
     available: true,
     variants: [
-      {
-        name: 'Caja',
-        quantity: 30,
-      },
+      { name: 'Caja', quantity: 30 },
     ],
     image: 'https://dcuk1cxrnzjkh.cloudfront.net/imagesproducto/008542L.jpg',
     gallery: [
@@ -154,7 +169,17 @@ export const PRODUCTS: Product[] = [
         id: '12345678-0004-4a10-8f01-000000000004',
         url: 'https://dcuk1cxrnzjkh.cloudfront.net/imagesproducto/008542L.jpg',
         alt: 'Omeprazol 20mg Cápsula - Caja x 30',
-      }
+      },
+     {
+        id: '12345678-0010-4a10-8f01-000000001001',
+        url: 'https://placehold.co/600x600/283593/FFFFFF?text=Vista+Lateral',
+        alt: 'Azitromicina 500mg Tableta - Vista lateral',
+      },
+      {
+        id: '12345678-0010-4a10-8f01-000000001002',
+        url: 'https://placehold.co/600x600/1A237E/FFFFFF?text=Caja+x3',
+        alt: 'Azitromicina 500mg Tableta - Detalle caja x 3',
+      },
     ],
     price: {
       currency: 'PEN',
@@ -169,7 +194,7 @@ export const PRODUCTS: Product[] = [
     contraindications: 'Hipersensibilidad al omeprazol.',
     warnings: 'Tomar antes de los alimentos. Consultar si los síntomas persisten.',
     relatedProductIds: [
-        'a1b2c3d4-0003-4a10-8f01-000000000003',
+      'a1b2c3d4-0003-4a10-8f01-000000000003',
     ],
   },
   {
@@ -184,10 +209,7 @@ export const PRODUCTS: Product[] = [
     },
     available: true,
     variants: [
-      {
-        name: 'Caja',
-        quantity: 100,
-      },
+      { name: 'Caja', quantity: 100 },
     ],
     image: 'https://dcuk1cxrnzjkh.cloudfront.net/imagesproducto/013075L.jpg',
     gallery: [
@@ -195,7 +217,17 @@ export const PRODUCTS: Product[] = [
         id: '12345678-0005-4a10-8f01-000000000005',
         url: 'https://dcuk1cxrnzjkh.cloudfront.net/imagesproducto/013075L.jpg',
         alt: 'Loratadina 10mg Tableta - Caja x 100',
-      }
+      },
+      {
+        id: '12345678-0010-4a10-8f01-000000001001',
+        url: 'https://placehold.co/600x600/283593/FFFFFF?text=Vista+Lateral',
+        alt: 'Azitromicina 500mg Tableta - Vista lateral',
+      },
+      {
+        id: '12345678-0010-4a10-8f01-000000001002',
+        url: 'https://placehold.co/600x600/1A237E/FFFFFF?text=Caja+x3',
+        alt: 'Azitromicina 500mg Tableta - Detalle caja x 3',
+      },
     ],
     price: {
       currency: 'PEN',
@@ -226,10 +258,7 @@ export const PRODUCTS: Product[] = [
     },
     available: true,
     variants: [
-      {
-        name: 'Caja',
-        quantity: 30,
-      },
+      { name: 'Caja', quantity: 30 },
     ],
     image: 'https://dcuk1cxrnzjkh.cloudfront.net/imagesproducto/926015L.jpg',
     gallery: [
@@ -237,7 +266,17 @@ export const PRODUCTS: Product[] = [
         id: '12345678-0006-4a10-8f01-000000000006',
         url: 'https://dcuk1cxrnzjkh.cloudfront.net/imagesproducto/926015L.jpg',
         alt: 'Metformina 850mg Tableta - Caja x 30',
-      }
+      },
+      {
+        id: '12345678-0010-4a10-8f01-000000001001',
+        url: 'https://placehold.co/600x600/283593/FFFFFF?text=Vista+Lateral',
+        alt: 'Azitromicina 500mg Tableta - Vista lateral',
+      },
+      {
+        id: '12345678-0010-4a10-8f01-000000001002',
+        url: 'https://placehold.co/600x600/1A237E/FFFFFF?text=Caja+x3',
+        alt: 'Azitromicina 500mg Tableta - Detalle caja x 3',
+      },
     ],
     price: {
       currency: 'PEN',
@@ -267,10 +306,7 @@ export const PRODUCTS: Product[] = [
     },
     available: true,
     variants: [
-      {
-        name: 'Caja',
-        quantity: 50,
-      },
+      { name: 'Caja', quantity: 50 },
     ],
     image: 'https://dcuk1cxrnzjkh.cloudfront.net/imagesproducto/203068L.jpg',
     gallery: [
@@ -278,7 +314,17 @@ export const PRODUCTS: Product[] = [
         id: '12345678-0007-4a10-8f01-000000000007',
         url: 'https://dcuk1cxrnzjkh.cloudfront.net/imagesproducto/203068L.jpg',
         alt: 'Naproxeno Sódico 550mg Tableta Recubierta - Caja x 50',
-      }
+      },
+    {
+        id: '12345678-0010-4a10-8f01-000000001001',
+        url: 'https://placehold.co/600x600/283593/FFFFFF?text=Vista+Lateral',
+        alt: 'Azitromicina 500mg Tableta - Vista lateral',
+      },
+      {
+        id: '12345678-0010-4a10-8f01-000000001002',
+        url: 'https://placehold.co/600x600/1A237E/FFFFFF?text=Caja+x3',
+        alt: 'Azitromicina 500mg Tableta - Detalle caja x 3',
+      },
     ],
     price: {
       currency: 'PEN',
@@ -309,10 +355,7 @@ export const PRODUCTS: Product[] = [
     },
     available: true,
     variants: [
-      {
-        name: 'Caja',
-        quantity: 100,
-      },
+      { name: 'Caja', quantity: 100 },
     ],
     image: 'https://placehold.co/600x600/0E7C5A/FFFFFF?text=Diclofenaco+50mg',
     gallery: [
@@ -320,7 +363,17 @@ export const PRODUCTS: Product[] = [
         id: '12345678-0008-4a10-8f01-000000000008',
         url: 'https://placehold.co/600x600/0E7C5A/FFFFFF?text=Diclofenaco+50mg',
         alt: 'Diclofenaco 50mg Tableta - Caja x 100',
-      }
+      },
+      {
+        id: '12345678-0010-4a10-8f01-000000001001',
+        url: 'https://placehold.co/600x600/283593/FFFFFF?text=Vista+Lateral',
+        alt: 'Azitromicina 500mg Tableta - Vista lateral',
+      },
+      {
+        id: '12345678-0010-4a10-8f01-000000001002',
+        url: 'https://placehold.co/600x600/1A237E/FFFFFF?text=Caja+x3',
+        alt: 'Azitromicina 500mg Tableta - Detalle caja x 3',
+      },
     ],
     price: {
       currency: 'PEN',
@@ -350,10 +403,7 @@ export const PRODUCTS: Product[] = [
     },
     available: true,
     variants: [
-      {
-        name: 'Inhalador',
-        quantity: 1,
-      },
+      { name: 'Inhalador', quantity: 1 },
     ],
     image: 'https://placehold.co/600x600/0E7C5A/FFFFFF?text=Salbutamol+Inhalador',
     gallery: [
@@ -361,7 +411,17 @@ export const PRODUCTS: Product[] = [
         id: '12345678-0009-4a10-8f01-000000000009',
         url: 'https://placehold.co/600x600/0E7C5A/FFFFFF?text=Salbutamol+Inhalador',
         alt: 'Salbutamol 100mcg Inhalador - 200 dosis',
-      }
+      },
+      {
+        id: '12345678-0010-4a10-8f01-000000001001',
+        url: 'https://placehold.co/600x600/283593/FFFFFF?text=Vista+Lateral',
+        alt: 'Azitromicina 500mg Tableta - Vista lateral',
+      },
+      {
+        id: '12345678-0010-4a10-8f01-000000001002',
+        url: 'https://placehold.co/600x600/1A237E/FFFFFF?text=Caja+x3',
+        alt: 'Azitromicina 500mg Tableta - Detalle caja x 3',
+      },
     ],
     price: {
       currency: 'PEN',
@@ -391,10 +451,7 @@ export const PRODUCTS: Product[] = [
     },
     available: true,
     variants: [
-      {
-        name: 'Caja',
-        quantity: 3,
-      },
+      { name: 'Caja', quantity: 3 },
     ],
     image: 'https://placehold.co/600x600/0E7C5A/FFFFFF?text=Azitromicina+500mg',
     gallery: [
@@ -402,7 +459,17 @@ export const PRODUCTS: Product[] = [
         id: '12345678-0010-4a10-8f01-000000000010',
         url: 'https://placehold.co/600x600/0E7C5A/FFFFFF?text=Azitromicina+500mg',
         alt: 'Azitromicina 500mg Tableta - Caja x 3',
-      }
+      },
+      {
+        id: '12345678-0010-4a10-8f01-000000001001',
+        url: 'https://placehold.co/600x600/283593/FFFFFF?text=Vista+Lateral',
+        alt: 'Azitromicina 500mg Tableta - Vista lateral',
+      },
+      {
+        id: '12345678-0010-4a10-8f01-000000001002',
+        url: 'https://placehold.co/600x600/1A237E/FFFFFF?text=Caja+x3',
+        alt: 'Azitromicina 500mg Tableta - Detalle caja x 3',
+      },
     ],
     price: {
       currency: 'PEN',

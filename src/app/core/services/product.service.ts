@@ -4,9 +4,10 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import type { Product } from '@api/types/product.types';
 import type { ApiResponse } from '@api/types/api-response.types';
+import type { IProductService } from './product.service.interface';
 
-@Injectable({ providedIn: 'root' })
-export class ProductService {
+@Injectable()
+export class ProductService implements IProductService {
   private readonly http = inject(HttpClient);
 
   getProducts(): Observable<Product[]> {

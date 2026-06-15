@@ -1,10 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { CartState } from '@core/state/cart.state';
+import { CartStore } from '@core/state/cart.store';
 import { BRAND_CONFIG } from '@core/tokens';
 import { NAV_LINKS } from '@shared/constants/navigation';
-
-
 
 @Component({
   selector: 'app-header',
@@ -14,6 +12,6 @@ import { NAV_LINKS } from '@shared/constants/navigation';
 })
 export class HeaderComponent {
   protected readonly brand = inject(BRAND_CONFIG);
-  protected readonly cart = inject(CartState);
+  protected readonly cart = inject(CartStore);
   protected readonly navLinks = NAV_LINKS;
 }

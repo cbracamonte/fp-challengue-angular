@@ -46,7 +46,7 @@
                   </span>
                 </div>
                 <div class="flex items-center justify-between mt-2">
-                  <span class="text-xs text-gray-500">Qty: {{ item.quantity }}</span>
+                  <span class="text-xs text-gray-500">Cantidad: {{ item.quantity }}</span>
                   <button
                     class="text-xs font-medium text-[var(--color-danger)] hover:underline"
                     (click)="cart.remove(item.product.id)"
@@ -62,7 +62,7 @@
 
         <div class="mt-6 border-t border-gray-200 pt-6">
           <div class="flex items-center justify-between text-base font-semibold text-gray-900">
-            <span>Subtotal ({{ cart.totalQuantity() }} artículos)</span>
+            <span>SubTotal ({{ cart.totalQuantity() }} artículos)</span>
             <span>{{ cart.subtotal() | currencyFormat: cart.currency() }}</span>
           </div>
           <p class="mt-1 text-xs text-gray-500">Envío calculado al finalizar la compra.</p>
