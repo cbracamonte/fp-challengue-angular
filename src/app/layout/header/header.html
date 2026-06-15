@@ -1,0 +1,98 @@
+<header class="sticky top-0 z-50 shadow-sm" role="banner">
+  <div
+    class="w-full px-4 py-1.5 text-center text-sm font-medium text-white"
+    style="background-color: var(--color-primary)"
+    role="status"
+    aria-live="polite"
+  >
+    {{ brand.announcementText }}
+  </div>
+
+  <div class="bg-white">
+    <div class="container mx-auto flex items-center gap-4 px-4 py-3">
+      <a routerLink="/" class="flex flex-shrink-0 items-center" [attr.aria-label]="brand.logoAlt">
+        <img [src]="brand.logoPath" [alt]="brand.brandName" class="h-9 w-auto" />
+      </a>
+
+      <div class="flex flex-1" role="search">
+        <label for="header-search" class="sr-only">Busca una marca o producto</label>
+        <div
+          class="flex w-full overflow-hidden rounded-full border border-gray-300 focus-within:border-[var(--color-primary)] transition-colors"
+        >
+          <input
+            id="header-search"
+            type="search"
+            placeholder="Busca una marca o producto"
+            class="flex-1 bg-transparent px-4 py-2 text-sm text-gray-700 placeholder-gray-400 outline-none"
+            aria-label="Buscar productos"
+          />
+          <button
+            type="submit"
+            class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full text-white transition-colors"
+            style="background-color: var(--color-primary)"
+            aria-label="Buscar"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              class="h-4 w-4"
+              aria-hidden="true"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <path stroke-linecap="round" d="M21 21l-4.35-4.35" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <a
+        routerLink="/cart"
+        class="flex flex-shrink-0 items-center gap-2 rounded-md p-2 transition-colors hover:bg-gray-100"
+        [attr.aria-label]="'Carrito de compras, ' + cart.totalQuantity() + ' productos'"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          class="h-6 w-6 text-gray-700"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+          />
+        </svg>
+        <span
+          class="flex min-w-[1.5rem] items-center justify-center rounded px-1.5 py-0.5 text-sm font-bold text-white"
+          style="background-color: #3b82f6"
+          aria-hidden="true"
+        >
+          {{ cart.totalQuantity() }}
+        </span>
+      </a>
+    </div>
+  </div>
+
+  <nav class="border-t border-gray-100 bg-white" aria-label="Categorías principales">
+    <div class="container mx-auto overflow-x-auto px-4">
+      <ul class="flex items-center gap-6 py-2" role="list">
+        @for (link of navLinks; track link.href) {
+          <li>
+            <a
+              [routerLink]="link.href"
+              class="whitespace-nowrap text-sm text-gray-700 transition-colors hover:text-[var(--color-primary)]"
+            >
+              {{ link.label }}
+            </a>
+          </li>
+        }
+      </ul>
+    </div>
+  </nav>
+</header>

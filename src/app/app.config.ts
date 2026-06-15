@@ -2,13 +2,14 @@ import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/
 import { provideRouter } from '@angular/router';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
-import { FOOTER_CONTENT } from '@core/tokens';
-import { INKAFARMA_FOOTER } from '@shared/constants';
+import { BRAND_CONFIG, FOOTER_CONTENT } from '@core/tokens';
+import { environment } from '@environments/environment';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    { provide: FOOTER_CONTENT, useValue: INKAFARMA_FOOTER },
+    { provide: BRAND_CONFIG, useValue: environment.brand },
+    { provide: FOOTER_CONTENT, useValue: environment.footer },
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideHttpClient(withFetch()),

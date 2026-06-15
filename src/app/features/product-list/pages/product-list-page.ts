@@ -18,7 +18,7 @@ import { ErrorStateComponent } from '@shared/components/error-state/error-state'
   imports: [ProductCardComponent, LoadingSpinnerComponent, ErrorStateComponent],
   template: `
     <section class="container mx-auto px-4 py-8">
-      <h1 class="mb-6 text-2xl font-bold text-[var(--color-accent)]">Our Products</h1>
+      <h1 class="mb-6 text-2xl font-bold text-[var(--color-accent)]">Nuestros Productos</h1>
 
       @if (loading()) {
         <app-loading-spinner />

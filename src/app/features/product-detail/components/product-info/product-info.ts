@@ -7,69 +7,7 @@ import { VariantSelectorComponent } from '../variant-selector/variant-selector';
   selector: 'app-product-info',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CurrencyFormatPipe, VariantSelectorComponent],
-  template: `
-    <div class="flex flex-col gap-5">
-      <div>
-        <p class="text-sm font-medium uppercase tracking-wide text-[var(--color-text-muted)]">
-          {{ product().brand }}
-        </p>
-        <h1 class="mt-1 text-2xl font-bold text-[var(--color-accent)] leading-tight">
-          {{ product().name }}
-        </h1>
-        <p class="mt-1 text-xs text-[var(--color-text-muted)]">
-          Reg. {{ product().regulatoryCode }}
-        </p>
-      </div>
-
-      <div class="flex items-baseline gap-3">
-        <span class="text-3xl font-bold text-gray-900">
-          {{ product().price.current | currencyFormat: product().price.currency }}
-        </span>
-        @if (product().price.original > product().price.current) {
-          <span class="text-lg text-[var(--color-text-muted)] line-through">
-            {{ product().price.original | currencyFormat: product().price.currency }}
-          </span>
-          <span class="rounded-full bg-red-100 px-2 py-0.5 text-xs font-bold text-[var(--color-danger)]">
-            -{{ discount() }}%
-          </span>
-        }
-      </div>
-
-      @if (product().variants.length > 0) {
-        <app-variant-selector
-          [variants]="product().variants"
-          [selected]="selectedVariant()"
-          (selectedChange)="variantChange.emit($event)"
-        />
-      }
-
-      @if (product().descriptionShort.length > 0) {
-        <ul class="flex flex-col gap-1 text-sm text-gray-700" aria-label="Key features">
-          @for (item of product().descriptionShort; track $index) {
-            <li class="flex items-start gap-2">
-              <span
-                class="mt-0.5 h-4 w-4 flex-shrink-0 rounded-full text-white text-xs flex items-center justify-center"
-                style="background-color: var(--color-primary)"
-                aria-hidden="true"
-              >✓</span>
-              {{ item }}
-            </li>
-          }
-        </ul>
-      }
-
-      <button
-        class="w-full rounded-lg py-3 text-base font-semibold text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-        style="background-color: var(--color-primary)"
-        [style.background-color]="product().available ? 'var(--color-primary)' : null"
-        [disabled]="!product().available"
-        (click)="addToCart.emit()"
-        [attr.aria-label]="product().available ? 'Add ' + product().name + ' to cart' : 'Out of stock'"
-      >
-        {{ product().available ? 'Add to Cart' : 'Out of Stock' }}
-      </button>
-    </div>
-  `,
+  templateUrl: './product-info.html',
 })
 export class ProductInfoComponent {
   readonly product = input.required<Product>();

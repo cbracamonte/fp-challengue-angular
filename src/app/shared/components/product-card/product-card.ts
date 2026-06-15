@@ -8,78 +8,7 @@ import { CurrencyFormatPipe } from '@shared/pipes/currency-format.pipe';
   selector: 'app-product-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterLink, NgOptimizedImage, CurrencyFormatPipe],
-  template: `
-    <article
-      class="group flex flex-col overflow-hidden rounded-lg bg-white shadow-sm hover:shadow-md transition-shadow"
-    >
-      <a
-        [routerLink]="['/producto', product().slug]"
-        class="block overflow-hidden"
-        [attr.aria-label]="product().name"
-        tabindex="0"
-      >
-        <div class="relative aspect-square overflow-hidden bg-gray-50">
-          <img
-            [ngSrc]="product().image"
-            [alt]="product().name"
-            fill
-            class="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
-            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-          />
-          @if (!product().available) {
-            <div
-              class="absolute inset-0 flex items-center justify-center bg-white/70"
-              aria-label="Out of stock"
-            >
-              <span class="rounded-full bg-gray-200 px-3 py-1 text-sm font-medium text-gray-600">
-                Out of stock
-              </span>
-            </div>
-          }
-        </div>
-      </a>
-
-      <div class="flex flex-1 flex-col gap-2 p-4">
-        <p class="text-xs font-medium uppercase tracking-wide text-[var(--color-text-muted)]">
-          {{ product().brand }}
-        </p>
-        <a
-          [routerLink]="['/producto', product().slug]"
-          class="line-clamp-2 text-sm font-semibold text-gray-800 hover:text-[var(--color-primary)] transition-colors"
-        >
-          {{ product().name }}
-        </a>
-
-        @if (product().variants.length > 0) {
-          <p class="text-xs text-[var(--color-text-muted)]">
-            {{ product().variants[0].name }}
-          </p>
-        }
-
-        <div class="mt-auto flex items-end justify-between gap-2 pt-2">
-          <div>
-            <span class="text-lg font-bold text-gray-900">
-              {{ product().price.current | currencyFormat: product().price.currency }}
-            </span>
-            @if (product().price.original > product().price.current) {
-              <span class="ml-1 text-xs text-[var(--color-text-muted)] line-through">
-                {{ product().price.original | currencyFormat: product().price.currency }}
-              </span>
-            }
-          </div>
-          <button
-            class="flex-shrink-0 rounded-md px-3 py-1.5 text-sm font-medium text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            style="background-color: var(--color-primary)"
-            [disabled]="!product().available"
-            (click)="addToCart.emit(product())"
-            aria-label="Add {{ product().name }} to cart"
-          >
-            Add
-          </button>
-        </div>
-      </div>
-    </article>
-  `,
+  templateUrl: './product-card.html',
 })
 export class ProductCardComponent {
   readonly product = input.required<Product>();

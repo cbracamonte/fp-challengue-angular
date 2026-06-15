@@ -17,6 +17,7 @@
       "@core/*": ["./src/app/core/*"],
       "@features/*": ["./src/app/features/*"],
       "@layout/*": ["./src/app/layout/*"],
+      "@environments/*": ["./src/environments/*"],
       "@api/*": ["./src/api/*"]
     }
   },

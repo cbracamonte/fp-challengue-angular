@@ -7,12 +7,6 @@ import { HeaderComponent } from '@layout/header/header';
   selector: 'app-main-layout',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterOutlet, Footer, HeaderComponent],
-  template: `
-    <app-header />
-    <main class="min-h-screen bg-[var(--color-background)]">
-      <router-outlet />
-    </main>
-    <app-footer />
-  `,
+  templateUrl: './main-layout.html',
 })
 export class MainLayoutComponent {}

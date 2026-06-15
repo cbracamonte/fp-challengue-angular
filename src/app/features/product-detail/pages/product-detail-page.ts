@@ -11,10 +11,10 @@ import { ProductService } from '@core/services/product.service';
 import { CartState } from '@core/state/cart.state';
 import { AnalyticsService } from '@core/services/analytics.service';
 import type { Product, ProductVariant } from '@api/types/product.types';
-import { ImageGalleryComponent } from '../components/image-gallery/image-gallery';
-import { ProductInfoComponent } from '../components/product-info/product-info';
-import { ProductTabsComponent } from '../components/product-tabs/product-tabs';
-import { RelatedProductsComponent } from '../components/related-products/related-products';
+import { ImageGalleryComponent } from '@features/product-detail/components/image-gallery/image-gallery';
+import { ProductInfoComponent } from '@features/product-detail/components/product-info/product-info';
+import { ProductTabsComponent } from '@features/product-detail/components/product-tabs/product-tabs';
+import { RelatedProductsComponent } from '@features/product-detail/components/related-products/related-products';
 import { LoadingSpinnerComponent } from '@shared/components/loading-spinner/loading-spinner';
 import { ErrorStateComponent } from '@shared/components/error-state/error-state';
 

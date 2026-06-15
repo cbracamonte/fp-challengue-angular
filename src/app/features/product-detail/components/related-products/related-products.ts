@@ -13,12 +13,12 @@ import { ProductCardComponent } from '@shared/components/product-card/product-ca
           id="related-heading"
           class="mb-4 text-xl font-bold text-[var(--color-accent)]"
         >
-          Related Products
+          Productos Relacionados
         </h2>
         <div
           class="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory"
           role="list"
-          aria-label="Related products carousel"
+          aria-label="Carrusel de productos relacionados"
         >
           @for (product of products(); track product.id) {
             <div class="w-52 flex-shrink-0 snap-start" role="listitem">
