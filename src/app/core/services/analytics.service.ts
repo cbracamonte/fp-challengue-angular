@@ -1,10 +1,12 @@
 import { Injectable, PLATFORM_ID, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import type { Product } from '@api/types/product.types';
+import { GA_MEASUREMENT_ID } from '@core/tokens';
 
 declare global {
   interface Window {
     dataLayer: unknown[];
+    gtag: (...args: unknown[]) => void;
   }
 }
 
@@ -20,32 +22,28 @@ interface Ga4Item {
 @Injectable({ providedIn: 'root' })
 export class AnalyticsService {
   private readonly platformId = inject(PLATFORM_ID);
+  private readonly measurementId = inject(GA_MEASUREMENT_ID);
 
-  private push(event: Record<string, unknown>): void {
+  trackPageView(url: string): void {
     if (!isPlatformBrowser(this.platformId)) return;
-    window.dataLayer ??= [];
-    window.dataLayer.push(event);
+    window.gtag('config', this.measurementId, { page_path: url });
   }
 
   trackViewItem(product: Product): void {
-    this.push({
-      event: 'view_item',
-      ecommerce: {
-        currency: product.price.currency,
-        value: product.price.current,
-        items: [this.toItem(product, 1)],
-      },
+    if (!isPlatformBrowser(this.platformId)) return;
+    window.gtag('event', 'view_item', {
+      currency: product.price.currency,
+      value: product.price.current,
+      items: [this.toItem(product, 1)],
     });
   }
 
   trackAddToCart(product: Product, quantity: number): void {
-    this.push({
-      event: 'add_to_cart',
-      ecommerce: {
-        currency: product.price.currency,
-        value: product.price.current * quantity,
-        items: [this.toItem(product, quantity)],
-      },
+    if (!isPlatformBrowser(this.platformId)) return;
+    window.gtag('event', 'add_to_cart', {
+      currency: product.price.currency,
+      value: product.price.current * quantity,
+      items: [this.toItem(product, quantity)],
     });
   }
 
