@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ProductListStore } from '@features/product-list/stores/product-list.store';
 import { PRODUCT_LIST_STORE } from '@core/tokens';
+import { SeoService } from '@core/services/seo.service';
 import { ProductCardComponent } from '@shared/components/product-card/product-card';
 import { LoadingSpinnerComponent } from '@shared/components/loading-spinner/loading-spinner';
 import { ErrorStateComponent } from '@shared/components/error-state/error-state';
@@ -14,4 +15,8 @@ import { ErrorStateComponent } from '@shared/components/error-state/error-state'
 })
 export class ProductListPageComponent {
   protected readonly store = inject(PRODUCT_LIST_STORE);
+
+  constructor() {
+    inject(SeoService).setProductListMeta();
+  }
 }
