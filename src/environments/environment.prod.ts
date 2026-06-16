@@ -3,6 +3,7 @@ import { INKAFARMA_FOOTER } from '@shared/constants';
 
 export const environment = {
   production: true,
+  measurementId: 'G-N2D43NPSRV',
   brand: {
     brandName: 'Inkafarma',
     logoPath: '/logo/inkafarma.svg',
