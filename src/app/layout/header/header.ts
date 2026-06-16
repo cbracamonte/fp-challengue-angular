@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { CartStore } from '@core/state/cart.store';
 import { BRAND_CONFIG } from '@core/tokens';
@@ -7,7 +8,7 @@ import { NAV_LINKS } from '@shared/constants/navigation';
 @Component({
   selector: 'app-header',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink],
+  imports: [RouterLink, NgOptimizedImage],
   templateUrl: './header.html',
 })
 export class HeaderComponent {

@@ -1,5 +1,6 @@
 import { inject } from '@angular/core';
 import { signalStore, withState, withMethods, withHooks, patchState } from '@ngrx/signals';
+import type { IProductListStore } from './product-list.store.interface';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { EMPTY, pipe, switchMap, tap, catchError } from 'rxjs';
 import { PRODUCT_SERVICE } from '@core/tokens';
@@ -42,3 +43,6 @@ export const ProductListStore = signalStore(
 );
 
 export type ProductListStore = InstanceType<typeof ProductListStore>;
+
+// Verificamos el contrato en tiempo de compilación, asegurando que ProductListStore implementa IProductListStore
+true satisfies ProductListStore extends IProductListStore ? true : never;

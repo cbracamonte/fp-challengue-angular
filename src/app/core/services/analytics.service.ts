@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, PLATFORM_ID, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import type { Product } from '@api/types/product.types';
 
 declare global {
@@ -7,10 +8,21 @@ declare global {
   }
 }
 
+interface Ga4Item {
+  item_id: string;
+  item_name: string;
+  item_brand: string;
+  item_category: string;
+  price: number;
+  quantity: number;
+}
+
 @Injectable({ providedIn: 'root' })
 export class AnalyticsService {
+  private readonly platformId = inject(PLATFORM_ID);
+
   private push(event: Record<string, unknown>): void {
-    if (typeof window === 'undefined') return;
+    if (!isPlatformBrowser(this.platformId)) return;
     window.dataLayer ??= [];
     window.dataLayer.push(event);
   }
@@ -37,7 +49,7 @@ export class AnalyticsService {
     });
   }
 
-  private toItem(product: Product, quantity: number) {
+  private toItem(product: Product, quantity: number): Ga4Item {
     return {
       item_id: product.sku,
       item_name: product.name,

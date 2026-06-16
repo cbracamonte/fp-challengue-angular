@@ -1,7 +1,9 @@
 import { ChangeDetectionStrategy, Component, computed, input, signal } from '@angular/core';
 import type { Product } from '@api/types/product.types';
 import { PRODUCT_TAB_DEFINITIONS } from '@features/product-detail/constants/product-tab';
-import { ProductTab } from '@shared/models/product-tab';
+import type { TabId } from '@features/product-detail/types/tab';
+
+type Tab = { id: TabId; label: string; content: string };
 
 @Component({
   selector: 'app-product-tabs',
@@ -13,14 +15,14 @@ export class ProductTabsComponent {
 
   protected readonly openSections = signal<Set<string>>(new Set(['description']));
 
-  protected readonly visibleTabs = computed<ProductTab[]>(() => {
+  protected readonly visibleTabs = computed<Tab[]>(() => {
     const p = this.product();
     if (!p) return [];
     return PRODUCT_TAB_DEFINITIONS.map(({ id, label, getContent }) => {
       const raw = getContent(p);
       const content = typeof raw === 'string' ? raw.trim() : raw;
       return content ? { id, label, content } : null;
-    }).filter((t) => t !== null) as ProductTab[];
+    }).filter((t): t is Tab => t !== null);
   });
 
   protected isOpen(id: string): boolean {

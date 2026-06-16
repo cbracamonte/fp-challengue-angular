@@ -1,31 +1,20 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Inject,
-  Optional,
-  computed,
-  signal,
-} from '@angular/core';
-import { CommonModule } from '@angular/common';
-import type { FooterColumn, FooterModel } from '@shared/models';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
+import type { FooterColumn } from '@shared/models';
 import { FOOTER_CONTENT } from '@core/tokens/';
 
 @Component({
   selector: 'app-footer',
-  standalone: true,
-  imports: [CommonModule],
+  imports: [NgOptimizedImage],
   templateUrl: './footer.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Footer {
-  protected readonly navColumns = signal<readonly FooterColumn[]>([]);
-  protected readonly copyright = signal<string>('');
-  protected readonly currentYear = computed(() => new Date().getFullYear());
-
-  constructor(@Optional() @Inject(FOOTER_CONTENT) footerContent?: FooterModel) {
-    if (footerContent) {
-      this.navColumns.set(footerContent.columns);
-      this.copyright.set(footerContent.copyright ?? '');
-    }
-  }
+export class FooterComponent {
+  private readonly footerContent = inject(FOOTER_CONTENT, { optional: true });
+  protected readonly navColumns = signal<readonly FooterColumn[]>(
+    this.footerContent?.columns ?? [],
+  );
+  protected readonly copyright = signal<string>(
+    this.footerContent?.copyright ?? '',
+  );
 }

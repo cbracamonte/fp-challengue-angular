@@ -8,13 +8,25 @@ type CartState = { items: Cart };
 export const CartStore = signalStore(
   { providedIn: 'root' },
   withState<CartState>({ items: [] }),
-  withComputed(({ items }) => ({
-    totalQuantity: computed(() => items().reduce((sum, i) => sum + i.quantity, 0)),
-    subtotal: computed(() =>
-      items().reduce((sum, i) => sum + (i.product.price.current * i.quantity), 0),
-    ),
-    currency: computed(() => items()[0]?.product.price.currency ?? 'PEN'),
-  })),
+  withComputed(({ items }) => {
+    const totalQuantity = computed(() => items().reduce((sum, i) => sum + i.quantity, 0));
+    const subtotal = computed(() =>
+      items().reduce((sum, i) => sum + i.product.price.current * i.quantity, 0),
+    );
+    const savings = computed(() =>
+      items().reduce((sum, i) => {
+        const saved = (i.product.price.original - i.product.price.current) * i.quantity;
+        return sum + (saved > 0 ? saved : 0);
+      }, 0),
+    );
+    return {
+      totalQuantity,
+      subtotal,
+      savings,
+      hasSavings: computed(() => savings() > 0),
+      currency: computed(() => items()[0]?.product.price.currency ?? 'PEN'),
+    };
+  }),
   withMethods((store) => ({
     add(product: Product, quantity = 1): void {
       patchState(store, (state) => {
@@ -28,6 +40,14 @@ export const CartStore = signalStore(
         }
         return { items: [...state.items, { product, quantity } satisfies CartItem] };
       });
+    },
+    updateQuantity(productId: string, qty: number): void {
+      if (qty < 1) return;
+      patchState(store, (state) => ({
+        items: state.items.map((item) =>
+          item.product.id === productId ? { ...item, quantity: qty } : item,
+        ),
+      }));
     },
     remove(productId: string): void {
       patchState(store, (state) => ({

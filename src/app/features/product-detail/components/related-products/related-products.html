@@ -1,0 +1,64 @@
+@if (products().length > 0) {
+  <section aria-labelledby="related-heading">
+    <div class="mb-4 flex items-center justify-between">
+      <h2 id="related-heading" class="text-xl font-bold text-[var(--color-accent)]">
+        Lo más buscado
+      </h2>
+    </div>
+
+    <div class="relative">
+      <button
+        type="button"
+        class="absolute -left-3 top-1/2 z-10 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 bg-white shadow-md transition-colors hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-30"
+        [disabled]="atStart()"
+        (click)="scrollPrev()"
+        aria-label="Anterior"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          class="h-4 w-4"
+          aria-hidden="true"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
+      <div
+        #scrollContainer
+        class="scrollbar-none flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory scroll-smooth"
+        role="list"
+        aria-label="Carrusel de productos relacionados"
+      >
+        @for (product of products(); track product.id) {
+          <div class="w-48 flex-shrink-0 snap-start" role="listitem">
+            <app-product-card [product]="product" (addToCart)="addToCart.emit($event)" />
+          </div>
+        }
+      </div>
+
+      <button
+        type="button"
+        class="absolute -right-3 top-1/2 z-10 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 bg-white shadow-md transition-colors hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-30"
+        [disabled]="atEnd()"
+        (click)="scrollNext()"
+        aria-label="Siguiente"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          class="h-4 w-4"
+          aria-hidden="true"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+  </section>
+}

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgOptimizedImage } from '@angular/common';
 import type { Product } from '@api/types/product.types';
@@ -14,8 +14,8 @@ export class ProductCardComponent {
   readonly product = input.required<Product>();
   readonly addToCart = output<Product>();
 
-  protected discount(): number {
+  protected readonly discount = computed(() => {
     const { current, original } = this.product().price;
     return Math.round(((original - current) / original) * 100);
-  }
+  });
 }

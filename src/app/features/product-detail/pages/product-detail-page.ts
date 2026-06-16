@@ -1,6 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { map } from 'rxjs';
 import { ProductDetailStore } from '@features/product-detail/stores/product-detail.store';
+import { PRODUCT_DETAIL_STORE } from '@core/tokens';
 import { ImageGalleryComponent } from '@features/product-detail/components/image-gallery/image-gallery';
 import { ProductInfoComponent } from '@features/product-detail/components/product-info/product-info';
 import { ProductTabsComponent } from '@features/product-detail/components/product-tabs/product-tabs';
@@ -11,7 +14,7 @@ import { ErrorStateComponent } from '@shared/components/error-state/error-state'
 @Component({
   selector: 'app-product-detail-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [ProductDetailStore],
+  providers: [{ provide: PRODUCT_DETAIL_STORE, useClass: ProductDetailStore }],
   imports: [
     RouterLink,
     ImageGalleryComponent,
@@ -23,15 +26,20 @@ import { ErrorStateComponent } from '@shared/components/error-state/error-state'
   ],
   templateUrl: './product-detail-page.html',
 })
-export class ProductDetailPageComponent implements OnInit {
+export class ProductDetailPageComponent {
   private readonly route = inject(ActivatedRoute);
-  protected readonly store = inject(ProductDetailStore);
+  protected readonly store = inject(PRODUCT_DETAIL_STORE);
 
-  ngOnInit(): void {
-    this.store.load(this.route.snapshot.paramMap.get('slug') ?? '');
+  private readonly slug = toSignal(
+    this.route.paramMap.pipe(map(p => p.get('slug') ?? '')),
+    { initialValue: '' },
+  );
+
+  constructor() {
+    this.store.load(this.slug);
   }
 
   protected reload(): void {
-    this.store.load(this.route.snapshot.paramMap.get('slug') ?? '');
+    this.store.load(this.slug());
   }
 }
