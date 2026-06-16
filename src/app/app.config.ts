@@ -1,7 +1,6 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
-import { absoluteUrlInterceptor } from '@core/interceptors/absolute-url.interceptor';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { BRAND_CONFIG, FOOTER_CONTENT, GA_MEASUREMENT_ID, PRODUCT_SERVICE, SEO_BASE_URL } from '@core/tokens';
 import { ProductService } from '@core/services/product.service';
@@ -14,10 +13,10 @@ export const appConfig: ApplicationConfig = {
     { provide: BRAND_CONFIG, useValue: environment.brand },
     { provide: FOOTER_CONTENT, useValue: environment.footer },
     { provide: PRODUCT_SERVICE, useClass: ProductService },
-    { provide: SEO_BASE_URL, useValue: 'https://fp-challengue-angular.onrender.com' },
+    { provide: SEO_BASE_URL, useValue: environment.url },
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
-    provideHttpClient(withFetch(), withInterceptors([absoluteUrlInterceptor])),
+    provideHttpClient(withFetch()),
     provideClientHydration(withEventReplay())
   ]
 };

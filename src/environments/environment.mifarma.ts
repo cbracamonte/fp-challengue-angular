@@ -3,6 +3,7 @@ import { MIFARMA_FOOTER } from '@shared/constants';
 
 export const environment = {
   production: true,
+  url: 'https://fp-challengue-angular.onrender.com',
   brand: {
     brandName: 'MiFarma',
     logoPath: '/logo/mifarma.svg',
