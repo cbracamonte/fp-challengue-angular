@@ -20,6 +20,12 @@ La integración con GA4 registra `page_view` en cada navegación de la SPA y eve
 
 ![Google Analytics Realtime](docs/screenshots/ga4-realtime.png)
 
+### Lighthouse — auditoría en producción
+
+Puntuaciones obtenidas sobre la URL de producción en Render: **Performance 97 · Accessibility 100 · Best Practices 97 · SEO 100**. Core Web Vitals: FCP 0.5 s, LCP 1.1 s, TBT 0 ms, CLS 0.002.
+
+![Lighthouse audit](docs/screenshots/lighthouse.png)
+
 ---
 
 ## Requisitos previos
