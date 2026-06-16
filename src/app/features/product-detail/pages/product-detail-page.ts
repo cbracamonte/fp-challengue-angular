@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { map } from 'rxjs';
 import { ProductDetailStore } from '@features/product-detail/stores/product-detail.store';
 import { PRODUCT_DETAIL_STORE } from '@core/tokens';
+import { SeoService } from '@core/services/seo.service';
 import { ImageGalleryComponent } from '@features/product-detail/components/image-gallery/image-gallery';
 import { ProductInfoComponent } from '@features/product-detail/components/product-info/product-info';
 import { ProductTabsComponent } from '@features/product-detail/components/product-tabs/product-tabs';
@@ -29,6 +30,7 @@ import { ErrorStateComponent } from '@shared/components/error-state/error-state'
 export class ProductDetailPageComponent {
   private readonly route = inject(ActivatedRoute);
   protected readonly store = inject(PRODUCT_DETAIL_STORE);
+  private readonly seo = inject(SeoService);
 
   private readonly slug = toSignal(
     this.route.paramMap.pipe(map(p => p.get('slug') ?? '')),
@@ -37,6 +39,10 @@ export class ProductDetailPageComponent {
 
   constructor() {
     this.store.load(this.slug);
+    effect(() => {
+      const product = this.store.product();
+      if (product) this.seo.setProductMeta(product);
+    });
   }
 
   protected reload(): void {
