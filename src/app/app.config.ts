@@ -1,6 +1,7 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import { absoluteUrlInterceptor } from '@core/interceptors/absolute-url.interceptor';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { BRAND_CONFIG, FOOTER_CONTENT, PRODUCT_SERVICE } from '@core/tokens';
 import { ProductService } from '@core/services/product.service';
@@ -14,7 +15,7 @@ export const appConfig: ApplicationConfig = {
     { provide: PRODUCT_SERVICE, useClass: ProductService },
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
-    provideHttpClient(withFetch()),
+    provideHttpClient(withFetch(), withInterceptors([absoluteUrlInterceptor])),
     provideClientHydration(withEventReplay())
   ]
 };
