@@ -1,0 +1,21 @@
+<section class="container mx-auto px-4 py-8">
+  <h1 class="mb-6 text-2xl font-bold text-[var(--color-accent)]">Nuestros Productos</h1>
+
+  @if (store.loading()) {
+    <app-loading-spinner />
+  } @else if (store.error()) {
+    <app-error-state [message]="store.error()!" (retry)="store.load()" />
+  } @else {
+    <ul
+      class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4"
+      role="list"
+      aria-label="Product list"
+    >
+      @for (product of store.products(); track product.id) {
+        <li>
+          <app-product-card [product]="product" (addToCart)="store.addToCart($event)" />
+        </li>
+      }
+    </ul>
+  }
+</section>

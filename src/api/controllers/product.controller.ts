@@ -19,7 +19,7 @@ export const getProductHandler = (
   req: Request,
   res: Response<ApiResponse<Product> | ApiErrorResponse>,
 ): void => {
-  const id = Array.isArray(req.params['id']) ? req.params['id'][0] : req.params['id'];
+  const id = req.params['id'] as string;
   const result = id ? productService.getProductByIdentifier(id) : null;
 
   if (!result) {
@@ -33,7 +33,7 @@ export const getRelatedProductsHandler = (
   req: Request,
   res: Response<ApiResponse<Product[], ListMeta> | ApiErrorResponse>,
 ): void => {
-  const id = Array.isArray(req.params['id']) ? req.params['id'][0] : req.params['id'];
+  const id = req.params['id'] as string;
   const result = id ? productService.getRelatedProducts(id) : null;
 
   if (!result) {

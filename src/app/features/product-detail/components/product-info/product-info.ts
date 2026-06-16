@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import type { Product, ProductVariant } from '@api/types/product.types';
 import { CurrencyFormatPipe } from '@shared/pipes/currency-format.pipe';
-import { VariantSelectorComponent } from '../variant-selector/variant-selector';
+import { VariantSelectorComponent } from '@features/product-detail/components/variant-selector/variant-selector';
 
 @Component({
   selector: 'app-product-info',
@@ -15,8 +15,8 @@ export class ProductInfoComponent {
   readonly variantChange = output<ProductVariant>();
   readonly addToCart = output<void>();
 
-  protected discount(): number {
+  protected readonly discount = computed(() => {
     const { current, original } = this.product().price;
     return Math.round(((original - current) / original) * 100);
-  }
+  });
 }

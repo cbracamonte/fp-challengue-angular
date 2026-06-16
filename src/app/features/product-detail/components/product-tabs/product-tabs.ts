@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component, computed, effect, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, signal } from '@angular/core';
 import type { Product } from '@api/types/product.types';
 import { PRODUCT_TAB_DEFINITIONS } from '@features/product-detail/constants/product-tab';
-import { TabId } from '@features/product-detail/types/tab';
-import { ProductTab } from '@shared/models/product-tab';
+import type { TabId } from '@features/product-detail/types/tab';
+
+type Tab = { id: TabId; label: string; content: string };
 
 @Component({
   selector: 'app-product-tabs',
@@ -11,38 +12,32 @@ import { ProductTab } from '@shared/models/product-tab';
 })
 export class ProductTabsComponent {
   readonly product = input.required<Product>();
-  protected readonly activeTab = signal<TabId | null>('description');
 
-  protected readonly visibleTabs = computed<ProductTab[]>(() => {
+  protected readonly openSections = signal<Set<string>>(new Set(['description']));
+
+  protected readonly visibleTabs = computed<Tab[]>(() => {
     const p = this.product();
     if (!p) return [];
-
     return PRODUCT_TAB_DEFINITIONS.map(({ id, label, getContent }) => {
       const raw = getContent(p);
       const content = typeof raw === 'string' ? raw.trim() : raw;
       return content ? { id, label, content } : null;
-    }).filter((t) => t !== null) as ProductTab[];
+    }).filter((t): t is Tab => t !== null);
   });
 
-  constructor() {
-    effect(() => {
-      const tabs = this.visibleTabs();
-      if (tabs.length === 0) {
-        this.activeTab.set(null);
-        return;
+  protected isOpen(id: string): boolean {
+    return this.openSections().has(id);
+  }
+
+  protected toggle(id: string): void {
+    this.openSections.update((set) => {
+      const next = new Set(set);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
       }
-      const active = this.activeTab();
-      if (active === null || !tabs.some((t) => t.id === active)) {
-        this.activeTab.set(tabs[0].id as TabId);
-      }
+      return next;
     });
-  }
-
-  protected selectTab(tabId: string) {
-    this.activeTab.set(tabId as TabId);
-  }
-
-  protected trackByTab(_: number, tab: ProductTab) {
-    return tab.id;
   }
 }

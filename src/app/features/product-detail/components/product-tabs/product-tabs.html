@@ -1,33 +1,37 @@
-<div class="mt-8">
-  <div role="tablist" class="flex border-b border-gray-200" aria-label="Product details">
-    @for (tab of visibleTabs(); track tab.id) {
-      <button
-        role="tab"
-        [id]="'tab-' + tab.id"
-        [attr.aria-controls]="'panel-' + tab.id"
-        [attr.aria-selected]="activeTab() === tab.id"
-        class="px-4 py-3 text-sm font-medium border-b-2 transition-colors -mb-px"
-        [class]="
-          activeTab() === tab.id
-            ? 'border-[var(--color-primary)] text-[var(--color-primary)]'
-            : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-        "
-        (click)="selectTab(tab.id)"
-      >
-        {{ tab.label }}
-      </button>
-    }
-  </div>
-
+<div class="divide-y divide-gray-200 pl-4 pr-4">
   @for (tab of visibleTabs(); track tab.id) {
-    <div
-      role="tabpanel"
-      [id]="'panel-' + tab.id"
-      [attr.aria-labelledby]="'tab-' + tab.id"
-      [hidden]="activeTab() !== tab.id"
-      class="py-5 text-sm text-gray-700 leading-relaxed whitespace-pre-line"
-    >
-      {{ tab.content }}
+    <div>
+      <button
+        type="button"
+        class="flex w-full items-center justify-between py-4 text-left font-semibold text-gray-900 transition-colors hover:text-[var(--color-primary)]"
+        [attr.aria-expanded]="isOpen(tab.id)"
+        [attr.aria-controls]="'section-' + tab.id"
+        (click)="toggle(tab.id)"
+      >
+        <span>{{ tab.label }}</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          class="h-5 w-5 flex-shrink-0 text-gray-400 transition-transform duration-300"
+          [class.rotate-180]="isOpen(tab.id)"
+          aria-hidden="true"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+      <div
+        [id]="'section-' + tab.id"
+        role="region"
+        class="grid transition-[grid-template-rows] duration-300 ease-out"
+        [style.grid-template-rows]="isOpen(tab.id) ? '1fr' : '0fr'"
+      >
+        <div class="overflow-hidden">
+          <p class="pb-5 text-sm leading-relaxed text-gray-600 whitespace-pre-line">{{ tab.content }}</p>
+        </div>
+      </div>
     </div>
   }
 </div>
