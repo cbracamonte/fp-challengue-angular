@@ -3,6 +3,7 @@ import { INKAFARMA_FOOTER } from '@shared/constants';
 
 export const environment = {
   production: true,
+  url: 'https://fp-challengue-angular.onrender.com',
   brand: {
     brandName: 'Inkafarma',
     logoPath: '/logo/inkafarma.svg',
